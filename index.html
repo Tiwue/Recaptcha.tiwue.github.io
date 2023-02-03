@@ -26,13 +26,13 @@
         <div class="form-check">
           <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios" value="1" checked="">
           <label class="form-check-label" for="optionsRadios1">
-            Option one 
+            Option one
           </label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios" value="2">
           <label class="form-check-label" for="optionsRadios2">
-            Option two 
+            Option two
           </label>
         </div>
 
@@ -44,6 +44,10 @@
         <button type="button" class="btn btn-primary" type="submit" onclick="onSubmit()">Primary</button>
       </div>
     </form>
+
+    <div>
+      <h5 id="token"></h5>
+    </div>
   </div>
 
   <script>
@@ -51,13 +55,11 @@
       var response = grecaptcha.getResponse();
       if (response.length == 0) {
         alert("reCAPTCHA token is empty");
-
         return false;
-      }else{
-        alert("reCAPTCHA token is "+ response) ;
-
+      } else {
+        document.getElementById('precio').value = "reCAPTCHA token is " + response
         let datos = {
-          'secret' : "6LcqoU0kAAAAALRhxRDXBCtwGTc6E-ezB5uAQO0O",
+          'secret': "6LcqoU0kAAAAALRhxRDXBCtwGTc6E-ezB5uAQO0O",
           'response': response
         }
 
@@ -69,16 +71,14 @@
           body: JSON.stringify(datos)
         }
 
-        fetch('https://www.google.com/recaptcha/api/siteverify', request).then((res) =>
-        {
-          res.json().then((data) =>
-          {
+        fetch('https://www.google.com/recaptcha/api/siteverify', request).then((res) => {
+          res.json().then((data) => {
             console.log(data);
           });
         });
         return true;
       }
-      
+
     }
   </script>
 </body>

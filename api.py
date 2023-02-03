@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify
 import requests
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/api', methods=['POST'])
+@cross_origin()
 def api():
     data = request.get_json()
     datos = "secret="+data['secret']+"&response="+data['response']
@@ -14,4 +17,4 @@ def api():
     return jsonify(response.json())
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000, debug=True)

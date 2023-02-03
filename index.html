@@ -50,11 +50,11 @@
     function onSubmit() {
       var response = grecaptcha.getResponse();
       if (response.length == 0) {
-        alert("reCAPTCHA token is "+ response) ;
-        
+        alert("reCAPTCHA token is empty");
+
         return false;
       }else{
-        alert("reCAPTCHA is done");
+        alert("reCAPTCHA token is "+ response) ;
         return true;
       }
       

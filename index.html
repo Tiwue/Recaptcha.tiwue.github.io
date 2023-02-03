@@ -46,7 +46,7 @@
     </form>
 
     <div>
-      <h5 id="token"></h5>
+      <h5 id="token" value="Nada"></h5>
     </div>
   </div>
 
@@ -58,25 +58,6 @@
         return false;
       } else {
         document.getElementById('token').value = "reCAPTCHA token is " + response
-        let datos = {
-          'secret': "6LcqoU0kAAAAALRhxRDXBCtwGTc6E-ezB5uAQO0O",
-          'response': response
-        }
-
-        let request = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(datos)
-        }
-
-        fetch('https://www.google.com/recaptcha/api/siteverify', request).then((res) => {
-          res.json().then((data) => {
-            console.log(data);
-          });
-        });
-        return true;
       }
 
     }

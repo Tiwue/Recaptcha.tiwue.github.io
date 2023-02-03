@@ -76,10 +76,12 @@
             'Content-Type': 'application/json'
           }
         }).then(res => res.json()).then(function (dataR) {
-          if (dataR.success) {
+          if (dataR.success == true) {
+            console.log(dataR)
             alert("recaptcha valido del lado del servidor")
           } else {
-            alert("recaptcha rechabado del lado del servidor")
+            console.log(dataR)
+            alert("recaptcha rechazado del lado del servidor")
           }
         });
       }

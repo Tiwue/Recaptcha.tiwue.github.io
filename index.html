@@ -64,7 +64,7 @@
       } else {
         document.getElementById('token').innerHTML = "reCAPTCHA token is " + response
         let datos = {
-          secret: "6LcqoU0kAAAAALRhxRDXBCtwGTc6E-ezB5uAQO0O",
+          secret: "",
           response: response
         }
 
@@ -76,8 +76,11 @@
             'Content-Type': 'application/json'
           }
         }).then(res => res.json()).then(function (dataR) {
-          console.log(dataR);
-          alert("Se recibió:\n" + dataR);
+          if (dataR.success) {
+            alert("recaptcha valido del lado del servidor")
+          } else {
+            alert("recaptcha rechabado del lado del servidor")
+          }
         });
       }
 

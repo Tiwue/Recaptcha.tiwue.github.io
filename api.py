@@ -11,10 +11,15 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @cross_origin()
 def api():
     data = request.get_json()
-    datos = "secret="+data['secret']+"&response="+data['response']
+    datos = "secret=6LcqoU0kAAAAALRhxRDXBCtwGTc6E-ezB5uAQO0O"+"&response="+data['response']
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     response = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data, headers=headers)
-    return jsonify(response.json())
+    respuesta = response.json()
+
+    if respuesta['success'] == True:
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False})
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

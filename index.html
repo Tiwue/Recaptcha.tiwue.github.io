@@ -1,45 +1,64 @@
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://bootswatch.com/5/cosmo/bootstrap.min.css">
-    <title>reCAPTCHA demo: Simple page</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://bootswatch.com/5/cosmo/bootstrap.min.css">
+  <title>reCAPTCHA demo: Simple page</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+  <div>
+    <form>
+      <fieldset class="form-group">
+        <legend class="mt-4">Radio buttons</legend>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios" value="1" checked="">
+          <label class="form-check-label" for="optionsRadios1">
+            Option one 
+          </label>
         </div>
-      </nav>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios" value="2">
+          <label class="form-check-label" for="optionsRadios2">
+            Option two 
+          </label>
+        </div>
 
-      <form>
-          <fieldset class="form-group">
-            <legend class="mt-4">Radio buttons</legend>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios" value="1" checked="">
-              <label class="form-check-label" for="optionsRadios1">
-                Option one is this and that—be sure to include why it's great
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios" value="2">
-              <label class="form-check-label" for="optionsRadios2">
-                Option two can be something else and selecting it will deselect option one
-              </label>
-            </div>
-           
-          </fieldset>
+      </fieldset>
 
-          <div class="g-recaptcha" id="rCaptcha" data-sitekey="6LcqoU0kAAAAAMpBNLtjvmPapbMMohfkl_pmvF9w"></div>
+      <div class="g-recaptcha" id="rCaptcha" data-sitekey="6LcqoU0kAAAAAMpBNLtjvmPapbMMohfkl_pmvF9w"></div>
 
-          <div>
-            <button type="button" class="btn btn-primary" type="submit">Primary</button>
-          </div>
-      </form>
+      <div>
+        <button type="button" class="btn btn-primary" type="submit" onclick="onSubmit()">Primary</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function onSubmit() {
+      var response = grecaptcha.getResponse();
+      if (response.length == 0) {
+        alert("reCAPTCHA is mandatory");
+        return false;
+      }else{
+        alert("reCAPTCHA is done");
+        return true;
+      }
+      
+    }
+  </script>
 </body>
+
 </html>

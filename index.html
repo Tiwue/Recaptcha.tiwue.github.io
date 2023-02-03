@@ -63,6 +63,26 @@
         return false;
       } else {
         document.getElementById('token').innerHTML  = "reCAPTCHA token is " + response
+        let datos = {
+          secret : "6LcqoU0kAAAAALRhxRDXBCtwGTc6E-ezB5uAQO0O",
+          response : response
+        }
+        
+        let opciones = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(datos)
+        }
+
+        fetch('/postReceta', opciones).then((res) =>
+        {
+          res.json().then((data) =>
+          {
+            alert("Se recibió:\n" + data);
+          });
+        });
       }
 
     }

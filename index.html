@@ -50,7 +50,8 @@
     function onSubmit() {
       var response = grecaptcha.getResponse();
       if (response.length == 0) {
-        alert("reCAPTCHA is mandatory");
+        alert("reCAPTCHA token is "+ response) ;
+        
         return false;
       }else{
         alert("reCAPTCHA is done");
